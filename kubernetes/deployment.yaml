@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: talonone-api
+  labels:
+    app: talonone-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: talonone-api
+  template:
+    metadata:
+      labels:
+        app: talonone-api
+    spec:
+      containers:
+        - name: talonone-api
+          image: tovalavatar/talonone-test:latest
+          ports:
+            - containerPort: 8080
+
