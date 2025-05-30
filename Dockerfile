@@ -2,18 +2,17 @@ FROM golang:1.24-alpine
 
 WORKDIR /app
 
-COPY go.mod ./
+COPY go.mod go.sum ./
 
-# Only include go.sum if it exists
-# COPY go.sum ./
+RUN go mod download
 
-RUN go mod tidy
+COPY ./main ./main
 
-COPY . .
+WORKDIR /app/main
 
-RUN go build -o server .
+RUN go build -o ../server .
 
 EXPOSE 8080
 
-CMD ["./server"]
+CMD ["../server"]
 
