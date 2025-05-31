@@ -17,5 +17,6 @@ vendor/
 *.swp
 
 # Ignore TLS certs and keys
+certs/
 *.crt
 *.key
