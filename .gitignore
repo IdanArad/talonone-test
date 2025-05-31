@@ -16,3 +16,6 @@ vendor/
 .idea/
 *.swp
 
+# Ignore TLS certs and keys
+*.crt
+*.key
