@@ -68,7 +68,7 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
-  tls: []
+  tls:
     - secretName: talonone-test-tls
       hosts:
         - talonone-test.local
