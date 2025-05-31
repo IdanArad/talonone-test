@@ -34,8 +34,8 @@ This repository contains a simple Go HTTP API deployed to Kubernetes using Helm,
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/talonone-home-task.git
-cd talonone-home-task
+git clone https://github.com/your-username/talonone-test.git
+cd talonone-test
 ```
 
 ### 2. Start Minikube
