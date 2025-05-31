@@ -122,4 +122,4 @@ MIT
 
 ## Author
 
-\[Your Name] - DevOps Engineer
+\Idan Arad - DevOps Engineer
