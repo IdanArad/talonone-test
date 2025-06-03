@@ -24,12 +24,32 @@ jobs:
       - name: Run tests
         run: go test ./...
 
-      - name: Build Docker image
+      - name: Build and tag Docker image
+        env:
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t tovalavatar/talonone-test:latest .
+          docker build -t tovalavatar/talonone-test:$IMAGE_TAG .
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image
-        run: docker push tovalavatar/talonone-test:latest
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker push tovalavatar/talonone-test:$IMAGE_TAG
+
+      - name: Update Helm image tag in values.yaml
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          echo "Updating image.tag in values.yaml to $IMAGE_TAG"
+          sed -i "s/^  tag:.*$/  tag: \"$IMAGE_TAG\"/" ./helm/values.yaml
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add ./helm/values.yaml
+          git commit -m "Update image tag to $IMAGE_TAG"
+          git push origin main
