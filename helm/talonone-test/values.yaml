@@ -8,7 +8,7 @@ replicaCount: 2
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
   repository: tovalavatar/talonone-test
-  tag: latest
+  tag: "f28d11739f08d5c190894b6c0283f4c08c1332b3"
   pullPolicy: IfNotPresent
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
